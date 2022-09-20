@@ -51,10 +51,24 @@ async def update_car(
     car_data: _schemas.CreateCar, car: _models.Car, db: "Session"
 ) -> _schemas.Car:
     car.car_number = car_data.car_number
-    car.model = car_data.model
-    car.owner = car_data.owner
-    car.odometer = car_data.odometer
-#    car.picture = car_data.picture
+    if not car_data.model is None:      car.model = car_data.model
+    if not car_data.owner is None:      car.owner = car_data.owner
+    if not car_data.odometer is None:   car.odometer = car_data.odometer
+    if not car_data.picture is None:    car.picture = car_data.picture
+
+    db.commit()
+    db.refresh(car)
+
+    return _schemas.Car.from_orm(car)
+
+async def update_car(
+    car_data: _schemas.UpdateCar, car: _models.Car, db: "Session"
+) -> _schemas.Car:
+    if not car_data.car_number is None: car.car_number = car_data.car_number
+    if not car_data.model is None:      car.model = car_data.model
+    if not car_data.owner is None:      car.owner = car_data.owner
+    if not car_data.odometer is None:   car.odometer = car_data.odometer
+    if not car_data.picture is None:    car.picture = car_data.picture
 
     db.commit()
     db.refresh(car)

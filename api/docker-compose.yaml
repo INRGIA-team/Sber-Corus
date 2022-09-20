@@ -16,6 +16,10 @@ services:
     build:
       context: images/fastapi_service
     image: fastapi_service
+    volumes:
+      - type: bind
+        source: ~/Python/SberBack/KorusOfficial/SberKorus/api/images/fastapi_service/logs/
+        target: /app/logs
     
     restart: always
     depends_on:
