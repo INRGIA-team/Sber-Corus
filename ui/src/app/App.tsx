@@ -7,6 +7,7 @@ import CarPage from './components/cars/CarPage';
 import {Modal} from './components/Modal'
 import {CreateCar} from "./components/creation/CreateCar";
 import {ModalContext} from "./ModalContext/ModalContext";
+import Creation from './components/cars/Creation';
 
 function App() {
 
@@ -23,9 +24,13 @@ function App() {
                 </div>
             </div>
           </div>
+          <div>
+            
+          </div>
 
               <Routes>
                 <Route path="/" element={<CarList></CarList>}></Route>
+                <Route path="/car/new" element={<Creation></Creation>}></Route>
                 <Route path="/car/:id" element={<CarPage></CarPage>}></Route>
               </Routes>
           </Router>

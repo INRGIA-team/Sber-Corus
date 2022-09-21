@@ -5,7 +5,7 @@ import { Api } from '../../../services/api.service';
 import { Car } from '../../../interfaces/car' 
 import { useNavigate, useLocation } from "react-router-dom";
 
-function CarPage() {
+function CarPage(props: {creating?: boolean}) {
   const api = new Api();
   const navigate = useNavigate();
   const [car, setCar] = useState<Car>();
@@ -15,6 +15,12 @@ function CarPage() {
   const search = useLocation().search;
 
   useEffect(() => {
+    if(props.creating){
+      setEditing(true)
+      return
+    }
+
+
     const ed = new URLSearchParams(search).get('editing');
     setEditing(!!ed)
   })
@@ -30,6 +36,22 @@ function CarPage() {
       window.location.href = '/';
     });
   }
+
+  useEffect(() => {
+    if(props.creating){
+      let newCar = {
+        id: 0,
+        car_number: '',
+        odometer: 0,
+        owner: 0,
+        model: '',
+        picture: ''
+      }
+      setCar(newCar)
+      setCarToEdit(newCar)
+      return
+    }
+  }, [])
   
   useEffect(() => {
     if(id) getCar(id)
@@ -63,13 +85,23 @@ function CarPage() {
   }
 
   function handleSubmit(){
-    if(carToEdit)
-      api.postCar(carToEdit).then(res => {
-        setCar(res);
-        setCarToEdit(res);
-        navigate('');
-        setEditing(false);
-      })
+    if(carToEdit){
+      if(props.creating){
+        api.postCar(carToEdit).then(res => {
+          setCar(res);
+          setCarToEdit(res);
+          navigate('');
+          setEditing(false);
+        })
+      } else {
+        api.putCar(carToEdit).then(res => {
+          setCar(res);
+          setCarToEdit(res);
+          navigate('');
+          setEditing(false);
+        })
+      }
+    }  
   }
 
   function onAddPucture(ev: any){
@@ -89,18 +121,11 @@ function CarPage() {
 
   return (
     <>
-
-
-
-
-
-
-
-
   {car ?
-            <>
+    <>
 
     <div className="wrap-buttons">
+          { !props.creating &&
             <div className="wrap-change-button" onClick={onEdit}>
                 <div className="change-button">
                     <svg viewBox="0 0 32 32" width="32px" height="32px">
@@ -108,7 +133,10 @@ function CarPage() {
                     </svg>
                 </div>
             </div>
+          }
             <Link to="/"  style={{textDecoration: 'none', color: 'black'}}><div className="submit-back">To List Cars</div></Link>
+          {
+            !props.creating && 
             <div className="wrap-delete-button" onClick={() => onDelete(car.id)}>
                 <div className="delete-button">
                     <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32">
@@ -116,6 +144,7 @@ function CarPage() {
                     </svg>
                 </div>
             </div>
+          }
         </div>
         
       
@@ -132,23 +161,23 @@ function CarPage() {
               }} >
                 <div className="wrap-car-info">
                 <div className="info-field">
-                    <input name="number" type="text" className="input-text" disabled={!editing} value={carToEdit.car_number} onChange={(ev) => handleChange(ev, 'car_number')} />
+                    <input placeholder='Number' name="number" type="text" className="input-text" disabled={!editing} value={carToEdit.car_number} onChange={(ev) => handleChange(ev, 'car_number')} />
                 </div>
                 <div className="info-field">
-                    <input name="model" type="text" className="input-text" disabled={!editing} value={carToEdit.model} onChange={(ev) => handleChange(ev, 'model')}/>
+                    <input placeholder='Model' name="model" type="text" className="input-text" disabled={!editing} value={carToEdit.model} onChange={(ev) => handleChange(ev, 'model')}/>
                 </div>
                 <div className="info-field">
-                    <input name="owner" type="text" className="input-text" disabled={!editing} value={carToEdit.owner} onChange={(ev) => handleChange(ev, 'owner')}/>
+                    <input placeholder='Owner' name="owner" type="text" className="input-text" disabled={!editing} value={carToEdit.owner} onChange={(ev) => handleChange(ev, 'owner')}/>
                 </div>
                 <div className="info-field">
-                    <input name="odometer" type="text" className="input-text" disabled={!editing} value={carToEdit.odometer} onChange={(ev) => handleChange(ev, 'odometer')}/>
+                    <input placeholder='Odometr' name="odometer" type="text" className="input-text" disabled={!editing} value={carToEdit.odometer} onChange={(ev) => handleChange(ev, 'odometer')}/>
                 </div>
 
             </div>
         <label>
           <div className="wrap-submit-button">
-            <div className="submit-button" style={{cursor: editing ? 'pointer' : 'not-allowed'}}>Submit</div>
-            <input type="submit" value="Submit" disabled={!editing}  style={{display: "none"}} />
+            {/* <div className="submit-button" style={{cursor: editing ? 'pointer' : 'not-allowed'}}>Submit</div> */}
+            <input className="create-button"  type="submit" value="Submit" disabled={!editing}  />
           </div>
         </label>
         

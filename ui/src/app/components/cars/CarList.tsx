@@ -19,23 +19,8 @@ function CarList() {
     const [page, setPage] = useState<number>(0);
     const [isFetching, setIsFetching] = useState(true);
     
-    // const {modal, open, close} = useContext(ModalContext);
     
     const getCars = () => {
-        // api.getCars(page)
-        // .then(res => {
-        //     if(!res.length) setScrolled(true);
-        //     setCars(cars.concat(res));
-        //     setPage(page + 1);
-        // })
-        // .catch(err => {
-        //     setScrolled(true)
-        //     console.log(err)
-        // })
-        // .finally(() => {
-        //     setIsFetching(false);
-        // });
-        // // console.log("loadDataOnlyOnce");
         api.getCars(page).then(res => {
             if(!res.length) setScrolled(true);
             setCars(cars.concat(res))
@@ -67,18 +52,11 @@ function CarList() {
     }
 
     function onCreateCar(){
-        api.postCar({
-            id: 0,
-            car_number: '',
-            model: '',
-            owner: 0,
-            odometer: 0,
-        }).then(res => navigate(`/car/${res.id}?editing=true`));
+        navigate('/car/new')
     }
 
     
     function handleScroll() {
-        console.log(window.innerHeight + document.documentElement.scrollTop, document.documentElement.offsetHeight)
         if (window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight) return;
         if(!scrolled)
             setIsFetching(true);

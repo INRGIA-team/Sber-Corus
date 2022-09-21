@@ -113,6 +113,9 @@
 }
 
 .wrap-car-info {
+    width: 70%;
+    min-width: 300px;
+    margin: auto;
     margin-top: 0;
     display: flex;
     flex-direction: row;
@@ -183,6 +186,7 @@
 }
 
 .wrap-submit-button {
+    padding: 0 0 0 100px;
     margin-top: 20px;
     width: 100px;
     height: 50px;
