@@ -20,9 +20,7 @@ def get_db():
     finally:
         db.close()
 
-async def create_car(
-    car: _schemas.CreateCar, db: "Session"
-) -> _schemas.Car:
+async def create_car(car: _schemas.CreateCar, db: "Session") -> _schemas.Car:
     car = _models.Car(**car.dict())
     db.add(car)
     db.commit()
@@ -35,15 +33,17 @@ async def get_cars(page: int, per_page: int, db: "Session") -> List[_schemas.Car
     return list(map(_schemas.Car.from_orm, cars))
 
 
-async def get_car(car_id: int, db: "Session"):
+async def get_car(car_id: int, db: "Session") -> _schemas.Car:
     car = db.query(_models.Car).filter(_models.Car.id == car_id).first()
     return car
 
-async def get_car_by_number(car_number: str, db: "Session"):
+async def get_car_by_number(car_number: str, db: "Session") -> _schemas.Car:
+    if car_number is None:
+        return None
     car = db.query(_models.Car).filter(_models.Car.car_number == car_number).first()
     return car
 
-async def get_cars_by_fields(required_car_fields: _schemas.UpdateCar, db: "Session"):
+async def get_cars_by_fields(required_car_fields: _schemas.UpdateCar, db: "Session") -> List[_schemas.Car]:
     query = db.query(_models.Car)
 
     if not required_car_fields.car_number is None: 
@@ -61,9 +61,7 @@ async def delete_car(car: _models.Car, db: "Session"):
     db.delete(car)
     db.commit()
 
-async def update_car(
-    car_data: _schemas.CreateCar, car: _models.Car, db: "Session"
-) -> _schemas.Car:
+async def update_car(car_data: _schemas.CreateCar, car: _models.Car, db: "Session") -> _schemas.Car:
     car.car_number = car_data.car_number
     if not car_data.model is None:      car.model = car_data.model
     if not car_data.owner is None:      car.owner = car_data.owner
@@ -75,9 +73,7 @@ async def update_car(
 
     return _schemas.Car.from_orm(car)
 
-async def update_car(
-    car_data: _schemas.UpdateCar, car: _models.Car, db: "Session"
-) -> _schemas.Car:
+async def update_car(car_data: _schemas.UpdateCar, car: _models.Car, db: "Session") -> _schemas.Car:
     if not car_data.car_number is None: car.car_number = car_data.car_number
     if not car_data.model is None:      car.model = car_data.model
     if not car_data.owner is None:      car.owner = car_data.owner
