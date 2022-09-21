@@ -147,7 +147,14 @@ async def update_car(
         status_code = 404
         detail = "NOT FOUND"
         logger.error(f"{request} {status_code} {detail}")
-        raise _fastapi.HTTPException(status_code=404, detail="NOT FOUND")
+        raise _fastapi.HTTPException(status_code=status_code, detail=detail)
+
+    car_with_the_same_number = await _services.get_car_by_number(car_number=car_data.car_number, db=db)
+    if not car_with_the_same_number is None and car_with_the_same_number.id != car_data.id: 
+        status_code = 409
+        detail = "CAR WITH SUCH NUMBER ALREADY EXISTS"
+        logger.error(f"{request} {status_code} {detail}")
+        raise _fastapi.HTTPException(status_code=status_code, detail=detail)
     
     car = await _services.update_car(car_data=car_data, car=car, db=db)
     logger.info(f"{request} {status_code} {detail}")

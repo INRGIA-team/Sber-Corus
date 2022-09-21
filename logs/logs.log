@@ -2822,3 +2822,601 @@ DETAIL:  Key (car_number)=(13123) already exists.
 2022-09-21T15:17:07.218110+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
 2022-09-21T15:17:23.832631+0000: INFO|	 GET /api/car/ { id : None, car_number : None, model : string, owner : None, odometer : None, picture : None } 200 OK
 2022-09-21T15:17:23.832631+0000: INFO|	 GET /api/car/ { id : None, car_number : None, model : string, owner : None, odometer : None, picture : None } 200 OK
+2022-09-21T15:22:42.490305+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:22:42.490305+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:22:42.500760+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:22:42.500760+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:22:44.312464+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:22:44.312464+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:22:44.356999+0000: INFO|	 GET /api/car/7/ 200 OK
+2022-09-21T15:22:44.356999+0000: INFO|	 GET /api/car/7/ 200 OK
+2022-09-21T15:22:44.563415+0000: INFO|	 GET /api/car/7/ 200 OK
+2022-09-21T15:22:44.563415+0000: INFO|	 GET /api/car/7/ 200 OK
+2022-09-21T15:23:29.063133+0000: INFO|	 UPDATE /api/car/{ id : 7, car_number : 3123, model : 2131, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:23:29.063133+0000: INFO|	 UPDATE /api/car/{ id : 7, car_number : 3123, model : 2131, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:23:32.804360+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:23:32.804360+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:23:32.818399+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:23:32.818399+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:23:34.489794+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T15:23:34.489794+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T15:23:35.289533+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T15:23:35.289533+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T15:23:37.622223+0000: INFO|	 GET /api/car/?page=3&per_page=10/ 200 OK
+2022-09-21T15:23:37.622223+0000: INFO|	 GET /api/car/?page=3&per_page=10/ 200 OK
+2022-09-21T15:23:42.127579+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:23:42.127579+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:23:42.179773+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:23:42.179773+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:23:42.311188+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:23:42.311188+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:23:59.324770+0000: ERROR|	 An error has been caught in function 'run_endpoint_function', process 'MainProcess' (1), thread 'MainThread' (140092300425024):
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7f69c6fbbc10>
+    │    └ <sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'car_number': '3123', 'model': 'new', 'car_id': 8}
+    │      │       └ 'UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s'
+    │      └ <method 'execute' of 'psycopg2.extensions.cursor' objects>
+    └ <cursor object at 0x7f69c2d1d9a0; closed: -1>
+
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "car_car_number_key"
+DETAIL:  Key (car_number)=(3123) already exists.
+
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/app/fastapi_service/main.py", line 159, in <module>
+    _uvicorn.run("main:app", host="0.0.0.0", port=_os.getenv("PORT", 8002))
+    │        │                                    │   └ <function getenv at 0x7f69c7ae09d0>
+    │        │                                    └ <module 'os' from '/usr/local/lib/python3.9/os.py'>
+    │        └ <function run at 0x7f69c6411e50>
+    └ <module 'uvicorn' from '/usr/local/lib/python3.9/site-packages/uvicorn/__init__.py'>
+
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/main.py", line 576, in run
+    server.run()
+    │      └ <function Server.run at 0x7f69c6411940>
+    └ <uvicorn.server.Server object at 0x7f69c2dcea00>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f69c64119d0>
+           │       │   └ <uvicorn.server.Server object at 0x7f69c2dcea00>
+           │       └ <function run at 0x7f69c79ec9d0>
+           └ <module 'asyncio' from '/usr/local/lib/python3.9/asyncio/__init__.py'>
+  File "/usr/local/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f69c2dc6140>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f69c73490d0>
+           └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 629, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f69c7349040>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 596, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f69c734ab80>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 1890, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f69c737f820>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+  File "/usr/local/lib/python3.9/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 404, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f69c2d60220>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f69c2dce790>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f69c2d60220>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/applications.py", line 270, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+  File "/usr/local/lib/python3.9/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f69c2d7e0d0>
+          └ <fastapi.applications.FastAPI object at 0x7f69c2dce790>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f69c2d77550>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f69c2d7e0d0>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8002', 'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/10...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f69c2d77550>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <function CORSMiddleware.simple_response at 0x7f69c64e3160>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>>, ...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7f69c2d7e040>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 64, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f69c2d6ffa0>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7f69c2d7e040>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <fastapi.routing.APIRouter object at 0x7f69c2d6f580>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f69c2d6ffa0>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 680, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │     └ <function Route.handle at 0x7f69c65ee280>
+          └ <fastapi.routing.APIRoute object at 0x7f69c2d17a90>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 275, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <function request_response.<locals>.app at 0x7f69c2d18160>
+          └ <fastapi.routing.APIRoute object at 0x7f69c2d17a90>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7f69c24acb50>
+                     └ <function get_request_handler.<locals>.app at 0x7f69c2d180d0>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/routing.py", line 231, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7f69c65db160>
+> File "/usr/local/lib/python3.9/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>, 'car_data': UpdateCar(id=8, car_number='3123', model='new',...
+                 │         └ <function update_car at 0x7f69c2d18040>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7f69c2d17ac0>
+
+  File "/app/fastapi_service/main.py", line 152, in update_car
+    car = await _services.update_car(car_data=car_data, car=car, db=db)
+                │         │                   │             │       └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+                │         │                   │             └ <models.Car object at 0x7f69c2461f70>
+                │         │                   └ UpdateCar(id=8, car_number='3123', model='new', owner='0', odometer=0.0, picture=None)
+                │         └ <function update_car at 0x7f69c2e73820>
+                └ <module 'services' from '/app/fastapi_service/services.py'>
+
+  File "/app/fastapi_service/services.py", line 87, in update_car
+    db.commit()
+    │  └ <function Session.commit at 0x7f69c5566310>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1451, in commit
+    self._transaction.commit(_to_root=self.future)
+    │    │            │               │    └ False
+    │    │            │               └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+    │    │            └ <function SessionTransaction.commit at 0x7f69c5563280>
+    │    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+    │    └ <function SessionTransaction._prepare_impl at 0x7f69c55631f0>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x7f69c5568f70>
+    │    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3386, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x7f69c5565160>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3526, in _flush
+    transaction.rollback(_capture_exception=True)
+    │           └ <function SessionTransaction.rollback at 0x7f69c5563310>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461f40>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+    │      └ <function raise_ at 0x7f69c62fc040>
+    └ <module 'sqlalchemy.util.compat' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3486, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x7f69c555b940>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x7f69c2cf08b0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x7f69c2cf08b0>
+    │   └ <function SaveUpdateAll.execute at 0x7f69c555e280>
+    └ SaveUpdateAll(mapped class Car->car)
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+    │    │         │               └ <function save_obj at 0x7f69c554d3a0>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py'>
+    │    └ <sqlalchemy.util._preloaded._ModuleRegistry object at 0x7f69c6371dc0>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 237, in save_obj
+    _emit_update_statements(
+    └ <function _emit_update_statements at 0x7f69c554d940>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1001, in _emit_update_statements
+    c = connection._execute_20(
+        │          └ <function Connection._execute_20 at 0x7f69c5ac2f70>
+        └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+           │    │     │             │               └ {'compiled_cache': {(<sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>, ('0', <class 'sql...
+           │    │     │             └ immutabledict({})
+           │    │     └ ([{'model': 'new', 'car_number': '3123', 'car_id': 8}],)
+           │    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Update object at 0x7f69c24ac340>>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 333, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x7f69c5ac2dc0>
+           └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x7f69c5ac40d0>
+          └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x7f69c5ac4280>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+    │    └ <function raise_ at 0x7f69c62fc040>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7f69c6fbbc10>
+    │    └ <sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'car_number': '3123', 'model': 'new', 'car_id': 8}
+    │      │       └ 'UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s'
+    │      └ <method 'execute' of 'psycopg2.extensions.cursor' objects>
+    └ <cursor object at 0x7f69c2d1d9a0; closed: -1>
+
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "car_car_number_key"
+DETAIL:  Key (car_number)=(3123) already exists.
+
+[SQL: UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s]
+[parameters: {'car_number': '3123', 'model': 'new', 'car_id': 8}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-09-21T15:23:59.324770+0000: ERROR|	 An error has been caught in function 'run_endpoint_function', process 'MainProcess' (1), thread 'MainThread' (140092300425024):
+Traceback (most recent call last):
+
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7f69c6fbbc10>
+    │    └ <sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'car_number': '3123', 'model': 'new', 'car_id': 8}
+    │      │       └ 'UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s'
+    │      └ <method 'execute' of 'psycopg2.extensions.cursor' objects>
+    └ <cursor object at 0x7f69c2d1d9a0; closed: -1>
+
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "car_car_number_key"
+DETAIL:  Key (car_number)=(3123) already exists.
+
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "/app/fastapi_service/main.py", line 159, in <module>
+    _uvicorn.run("main:app", host="0.0.0.0", port=_os.getenv("PORT", 8002))
+    │        │                                    │   └ <function getenv at 0x7f69c7ae09d0>
+    │        │                                    └ <module 'os' from '/usr/local/lib/python3.9/os.py'>
+    │        └ <function run at 0x7f69c6411e50>
+    └ <module 'uvicorn' from '/usr/local/lib/python3.9/site-packages/uvicorn/__init__.py'>
+
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/main.py", line 576, in run
+    server.run()
+    │      └ <function Server.run at 0x7f69c6411940>
+    └ <uvicorn.server.Server object at 0x7f69c2dcea00>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f69c64119d0>
+           │       │   └ <uvicorn.server.Server object at 0x7f69c2dcea00>
+           │       └ <function run at 0x7f69c79ec9d0>
+           └ <module 'asyncio' from '/usr/local/lib/python3.9/asyncio/__init__.py'>
+  File "/usr/local/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f69c2dc6140>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f69c73490d0>
+           └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 629, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f69c7349040>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 596, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f69c734ab80>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.9/asyncio/base_events.py", line 1890, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f69c737f820>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+  File "/usr/local/lib/python3.9/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f69c2d1f730>(<Future finis...7f69c2cda370>>)>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 404, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f69c2d60220>
+  File "/usr/local/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f69c2dce790>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f69c2d60220>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/applications.py", line 270, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+  File "/usr/local/lib/python3.9/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f69c2d7e0d0>
+          └ <fastapi.applications.FastAPI object at 0x7f69c2dce790>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f69c2d77550>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f69c2d7e0d0>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+          │    │               │      │        │                     └ Headers({'host': 'localhost:8002', 'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:104.0) Gecko/20100101 Firefox/10...
+          │    │               │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f69c2d77550>
+          │    │               │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │               └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <function CORSMiddleware.simple_response at 0x7f69c64e3160>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+          │    │   │      │        └ functools.partial(<bound method CORSMiddleware.send of <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>>, ...
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7f69c2d7e040>
+          └ <starlette.middleware.cors.CORSMiddleware object at 0x7f69c2d7e070>
+  File "/usr/local/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 64, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f69c2d6ffa0>
+          └ <starlette.middleware.exceptions.ExceptionMiddleware object at 0x7f69c2d7e040>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <fastapi.routing.APIRouter object at 0x7f69c2d6f580>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f69c2d6ffa0>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 680, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │     └ <function Route.handle at 0x7f69c65ee280>
+          └ <fastapi.routing.APIRoute object at 0x7f69c2d17a90>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 275, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f69c2d57310>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.h11_impl.RequestResponseCycle object at 0x7f69c2d1f4c0>>
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.21.0.3', 8002), 'c...
+          │    └ <function request_response.<locals>.app at 0x7f69c2d18160>
+          └ <fastapi.routing.APIRoute object at 0x7f69c2d17a90>
+  File "/usr/local/lib/python3.9/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7f69c24acb50>
+                     └ <function get_request_handler.<locals>.app at 0x7f69c2d180d0>
+  File "/usr/local/lib/python3.9/site-packages/fastapi/routing.py", line 231, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7f69c65db160>
+> File "/usr/local/lib/python3.9/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'db': <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>, 'car_data': UpdateCar(id=8, car_number='3123', model='new',...
+                 │         └ <function update_car at 0x7f69c2d18040>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7f69c2d17ac0>
+
+  File "/app/fastapi_service/main.py", line 152, in update_car
+    car = await _services.update_car(car_data=car_data, car=car, db=db)
+                │         │                   │             │       └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+                │         │                   │             └ <models.Car object at 0x7f69c2461f70>
+                │         │                   └ UpdateCar(id=8, car_number='3123', model='new', owner='0', odometer=0.0, picture=None)
+                │         └ <function update_car at 0x7f69c2e73820>
+                └ <module 'services' from '/app/fastapi_service/services.py'>
+
+  File "/app/fastapi_service/services.py", line 87, in update_car
+    db.commit()
+    │  └ <function Session.commit at 0x7f69c5566310>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1451, in commit
+    self._transaction.commit(_to_root=self.future)
+    │    │            │               │    └ False
+    │    │            │               └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+    │    │            └ <function SessionTransaction.commit at 0x7f69c5563280>
+    │    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 829, in commit
+    self._prepare_impl()
+    │    └ <function SessionTransaction._prepare_impl at 0x7f69c55631f0>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x7f69c5568f70>
+    │    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461040>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3386, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x7f69c5565160>
+    └ <sqlalchemy.orm.session.Session object at 0x7f69c2cda370>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3526, in _flush
+    transaction.rollback(_capture_exception=True)
+    │           └ <function SessionTransaction.rollback at 0x7f69c5563310>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x7f69c2461f40>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+    │      └ <function raise_ at 0x7f69c62fc040>
+    └ <module 'sqlalchemy.util.compat' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 3486, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x7f69c555b940>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x7f69c2cf08b0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x7f69c2cf08b0>
+    │   └ <function SaveUpdateAll.execute at 0x7f69c555e280>
+    └ SaveUpdateAll(mapped class Car->car)
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+    │    │         │               └ <function save_obj at 0x7f69c554d3a0>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py'>
+    │    └ <sqlalchemy.util._preloaded._ModuleRegistry object at 0x7f69c6371dc0>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 237, in save_obj
+    _emit_update_statements(
+    └ <function _emit_update_statements at 0x7f69c554d940>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1001, in _emit_update_statements
+    c = connection._execute_20(
+        │          └ <function Connection._execute_20 at 0x7f69c5ac2f70>
+        └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+           │    │     │             │               └ {'compiled_cache': {(<sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>, ('0', <class 'sql...
+           │    │     │             └ immutabledict({})
+           │    │     └ ([{'model': 'new', 'car_number': '3123', 'car_id': 8}],)
+           │    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Update object at 0x7f69c24ac340>>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 333, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x7f69c5ac2dc0>
+           └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x7f69c5ac40d0>
+          └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x7f69c5ac4280>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+    │    └ <function raise_ at 0x7f69c62fc040>
+    └ <module 'sqlalchemy.util' from '/usr/local/lib/python3.9/site-packages/sqlalchemy/util/__init__.py'>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+    │    │       └ <function DefaultDialect.do_execute at 0x7f69c6fbbc10>
+    │    └ <sqlalchemy.dialects.postgresql.psycopg2.PGDialect_psycopg2 object at 0x7f69c5473ca0>
+    └ <sqlalchemy.engine.base.Connection object at 0x7f69c2461cd0>
+  File "/usr/local/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+    │      │       │          └ {'car_number': '3123', 'model': 'new', 'car_id': 8}
+    │      │       └ 'UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s'
+    │      └ <method 'execute' of 'psycopg2.extensions.cursor' objects>
+    └ <cursor object at 0x7f69c2d1d9a0; closed: -1>
+
+sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "car_car_number_key"
+DETAIL:  Key (car_number)=(3123) already exists.
+
+[SQL: UPDATE car SET car_number=%(car_number)s, model=%(model)s WHERE car.id = %(car_id)s]
+[parameters: {'car_number': '3123', 'model': 'new', 'car_id': 8}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-09-21T15:24:00.906753+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:24:00.906753+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:24:00.917178+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:24:00.917178+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:24:01.723588+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T15:24:01.723588+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T15:24:01.986840+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T15:24:01.986840+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T15:43:52.385487+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:43:52.385487+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T15:43:52.632302+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:43:52.632302+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:43:52.643495+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:43:52.643495+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T15:43:56.236609+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:43:56.236609+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:43:56.250030+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:43:56.250030+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T15:43:57.537540+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T15:43:57.537540+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T15:43:57.552036+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T15:43:57.552036+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T16:04:27.550476+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T16:04:27.550476+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T16:04:27.574453+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T16:04:27.574453+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T16:04:30.247082+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:30.247082+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:30.268590+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:30.268590+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:35.201081+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T16:04:35.201081+0000: INFO|	 GET /api/car/?page=1&per_page=10/ 200 OK
+2022-09-21T16:04:35.900718+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T16:04:35.900718+0000: INFO|	 GET /api/car/?page=2&per_page=10/ 200 OK
+2022-09-21T16:04:46.366355+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T16:04:46.366355+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T16:04:46.479491+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T16:04:46.479491+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T16:04:46.494802+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T16:04:46.494802+0000: INFO|	 GET /api/car/8/ 200 OK
+2022-09-21T16:04:55.435768+0000: ERROR|	 UPDATE /api/car/{ id : 8, car_number : 124, model : 21312, owner : 0, odometer : 0.0, picture : None } 409 CAR WITH SUCH NUMBER ALREADY EXISTS
+2022-09-21T16:04:55.435768+0000: ERROR|	 UPDATE /api/car/{ id : 8, car_number : 124, model : 21312, owner : 0, odometer : 0.0, picture : None } 409 CAR WITH SUCH NUMBER ALREADY EXISTS
+2022-09-21T16:04:56.835846+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:56.835846+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:56.854864+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T16:04:56.854864+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
