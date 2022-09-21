@@ -7,6 +7,8 @@ Linux/MacOS:
     export LOGS_DIRECTORY="/Absolute/Path/For/Logs/Dir/"
     
 Windows:
+
+Из-за ограничений переменных окружения в OS Windows передать таким образом информацию о директории в контейнер не получится. Для запуска программы придется поработать ручками: 
     
 - Зайдите в файл `docker-compose.yaml` 
 - Найдите поле `source` у объекта `webserver`
