@@ -18,14 +18,22 @@ services:
     image: fastapi_service
     volumes:
       - type: bind
-        source: ${MAIN_DIRECTORY_FULL_PATH}/logs/
+        source: ${MAIN_DIRECTORY}/logs/
         target: /app/logs
-    
     restart: always
     depends_on:
       - postgres
     ports:
       - "8002:8002"
 
-volumes:   # add this section
-  pgdata:    # does not need anything underneath this
+  frontend:
+    build:
+      context: ui/
+    image: ts_service    
+    depends_on:
+      - webserver
+    ports:
+      - "3000:3000"
+
+volumes:     
+  pgdata:    
