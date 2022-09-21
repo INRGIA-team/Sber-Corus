@@ -88,10 +88,7 @@ function CarPage(props: {creating?: boolean}) {
     if(carToEdit){
       if(props.creating){
         api.postCar(carToEdit).then(res => {
-          setCar(res);
-          setCarToEdit(res);
-          navigate('');
-          setEditing(false);
+          navigate('/car/'+res.id);
         })
       } else {
         api.putCar(carToEdit).then(res => {

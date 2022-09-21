@@ -113,15 +113,17 @@
 }
 
 .wrap-car-info {
-    width: 70%;
-    min-width: 300px;
-    margin: auto;
     margin-top: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+}
+.information{
+    width: 70%;
+    margin: auto;
+    min-width: 300px;
 }
 
 .main-info-car {
@@ -175,6 +177,7 @@
 
 .info-field {
     margin: 50px;
+    text-align: center;
 }
 
 .info-field input {
