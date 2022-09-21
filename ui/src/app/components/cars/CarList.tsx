@@ -97,7 +97,6 @@ function CarList() {
 
     return (
         <>
-
             <div className="search">
             <button onClick ={onCreateCar} className="create-button">Create Car Note</button>
             <div className="search-field">
