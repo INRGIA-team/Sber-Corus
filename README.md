@@ -5,6 +5,14 @@
 Linux/MacOS:
 
     export LOGS_DIRECTORY="/Absolute/Path/For/Logs/Dir/"
+    
+Windows:
+    
+    RUN setx path "%LOGS_DIRECTORY%;C:\Absolute\Path\For\Logs\Dir\"
+    
+#### Примечание:
+В пути до директории обязательно должен присутствовать последний слеш. При указании "/Absolute/Path/For/Logs/Dir" контейнер запущен не будет. 
+ 
  
 Далее для запуска серверной части необходимо выполнить из основной директории проекта команду:
 
