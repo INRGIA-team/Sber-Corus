@@ -13,21 +13,21 @@ function App() {
     return (
         <>
           <Router>
-            <Toolbar>
-              <Link to="/" className="logo">CarDB</Link>
-              <a href='https://github.com/katunilya/task-simple-crud/blob/main/README.md'
-                        target='_blank'
-                        className='menuEl'
-                        rel='noreferrer'
-                    >задание</a>
-            </Toolbar>
-            <div className='layout'>
+
+          <div className="wrap-header">
+            <div className="logo">
+                <div className="main-logo">Simple REST API</div>
+                <div className="wrap-mini-logo">
+                    <div className="top-logo">by Ingria team</div>
+                    <div className="bottom-logo">for SberCorus</div>
+                </div>
+            </div>
+          </div>
+
               <Routes>
                 <Route path="/" element={<CarList></CarList>}></Route>
                 <Route path="/car/:id" element={<CarPage></CarPage>}></Route>
               </Routes>
-
-            </div>
           </Router>
 
         </>

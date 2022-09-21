@@ -97,46 +97,49 @@ function CarList() {
 
     return (
         <>
-            <h1>Cars DB</h1>
-            <div className='search'>
-                <label htmlFor="Search">
-                    <img src="/images/search_black_24dp.svg" alt="" />
+
+            <div className="search">
+            <button onClick ={onCreateCar} className="create-button">Create Car Note</button>
+            <div className="search-field">
+                <input id='search' name='Search' type="text" className="input-text" placeholder="search car" onChange={(ev) => onSearch(ev.target.value)}/>
+                <div className="wrap-search-button">
+            <label htmlFor="Search">
+                <div className="search-button"></div>
                 </label>
-                <input id='search' type='text' name='Search' placeholder='Search here'
-                onChange={(ev) => onSearch(ev.target.value)}/>
-                <br/>
-                { !!carDataSource.length &&
-                    <div className='searchResults'>
-                        {carDataSource.map(car => 
-                            <Link to={'/car/' + car.id} className='carCard' key={'car-' + car.car_number}>
-                            <span className='cardElement'>{car.car_number}</span>
-                            <span className='cardElement'>{car.model}</span>
-                            <span className='cardElement'>{car.owner}</span>
-                            <span className='cardElement'>{car.odometer}</span>
-                            </Link>)
-                        }
-                    </div>  
-                }
-                <button onClick ={onCreateCar} className="create-button">Create Car Note</button>
+            </div>
+            </div>
+            
+            </div>
+            { !!carDataSource.length &&
+            <div className='cars-wrap'>
+                {carDataSource.map(car => 
+                <Link to={'/car/' + car.id} className='carCard' key={'car-' + car.car_number} style={{textDecoration: 'none', color: 'black'}}>                
+                    <div className='car'>                            
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.car_number}</div><div className="dop-info-car">number</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.model}</div><div className="dop-info-car">model</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.owner}</div><div className="dop-info-car">owner</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.odometer}</div><div className="dop-info-car">odometer</div></div>
+                    </div> 
+                </Link>) 
+                }                
+                </div>
+            }
+            
+            
+
+            <div className='cars-wrap'>
+                { cars.map(car => (
+                <Link to={'/car/' + car.id} className='carCard' key={'car-' + car.car_number} style={{textDecoration: 'none', color: 'black'}}>                
+                    <div className='car'>                            
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.car_number}</div><div className="dop-info-car">number</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.model}</div><div className="dop-info-car">model</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.owner}</div><div className="dop-info-car">owner</div></div>
+                            <div className="wrap-car-info"><div className="number main-info-car">{car.odometer}</div><div className="dop-info-car">odometer</div></div>
+                    </div> 
+                </Link>))
+                }                
             </div>
 
-            <div className="header">
-                <span className='cardElement'>Number</span>
-                <span className='cardElement'>Model</span>
-                <span className='cardElement'>Owner</span>
-                <span className='cardElement'>Odometer</span>
-            </div>
-            <div className='container'>
-                { cars.map(car => (
-                    <Link to={'/car/' + car.id} className='carCard' key={'car-' + car.car_number}>
-                        <span className='cardElement'>{car.car_number}
-                        </span>
-                        <span className='cardElement'>{car.model}</span>
-                        <span className='cardElement'>{car.owner}</span>
-                        <span className='cardElement'>{car.odometer}</span>
-                    </Link>
-                ))}
-            </div>
         
             <div id='bottom' 
             style={{width: '100%', height: '5px', marginBottom: "10px"}}>
@@ -147,7 +150,7 @@ function CarList() {
             }
 
             {scrolled &&
-                <div style={{textAlign: 'center', width: '100%'}}>
+                <div style={{textAlign: 'center', width: '100%', marginBottom: '30px'}}>
                     <span className='loadMore' onClick={() => {setScrolled(false); getCars(); }}>Try to load more cars</span>
                 </div>
             }   

@@ -1,135 +1,219 @@
-.container{
-    width: 100%;
-    margin-bottom: 20px;
-}
-.carCard{
+.cars-wrap {
     display: flex;
-    justify-content: space-evenly;
-    background: white;
-    text-decoration: none;
-    color: black;
-    padding: 10px;
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-
-    translate: 0;
-    transition: translate 300ms;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
 }
-/* .carCard > *{
-    text-decoration: none;
-    color: black;
-} */
-.header{
+
+.car {
+    height: 150px;
+    width: 600px;
+    border: 1px solid #d6dde5;
+    border-radius: 7px;
+    margin: 20px;
+    margin-top: 0;
+    transition: all 0.2s;
+    user-select: none;
+    background-color: white;
+    z-index: 999;
     display: flex;
-    background: #ddd;
-    padding: 10px;
-    justify-content: space-evenly;
-}
-.carCard:hover{
-    translate: 0 -5px;
-    z-index: 4;
-}
-
-.cardElement{
-    flex: 1 0 10%;
-    text-decoration: none;
-    text-align: center;
-    width: 50px;
-}
-.spacer{
-    flex: 1 1 auto;
-}
-
-.color{
-    width: 25px;
-    height: 25px;
-    display: inline-block;
-}
-
-.search{
-    height: 20vh;
-    text-align: center;
-    position: relative;
-}
-.search label{
-    font-size: 1.2em;
-    font-weight: 600;
-}
-.search input{
-    font-size: larger;
-    padding: 10px;
-    border-radius: 4px;
-}
-.search img{
-    scale: 1.4;
-    translate: -5px 5px;
-}
-
-.image{
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 500px;
-}
-
-.information{
-    display: inline-block;
-    position: fixed;
-    color: black;
-    margin-top: 5px;
-    padding-left: 10px;
-    font-size: 30px;
-}
-
-.searchResults{
-    position: absolute;
-    width: 100%;
-    z-index: 5;
-    background: white;
+    flex-wrap: wrap;
+    justify-content: space-around;
     
 }
 
-.back-button{
-    margin-top: 10px;
-    margin-left: 10px;
-    width:100px;
-    height: 30px;
-    font-size: 20px;
-}
-
-.create-button{
-    margin-top: 10px;
-    font-size: larger;
-    padding: 10px;
-    border-radius: 4px;
-    text-align: center;
-    position: relative;
+.car:hover {
+    box-shadow: 0px 0px 3px 3px #e0e7f3;
     cursor: pointer;
 }
 
-.create-input{
-    font-size: 25px;
-    margin-top: 5px;
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.edit-input{
-    font-size: 25px;
+.search-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.edit-button{
-    margin-top: 10px;
-    margin-left: 10px;
-    width:100px;
+.input-text {
+    border: none;
+    border-bottom: solid 1px silver;
     height: 30px;
-    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;    
+    font-size: 18px;
+    color: grey;
+    width: 300px;
+    transition: all 0.2s;
 }
 
-.input-label{
-    font-size:25px;
+.input-text:focus {
+    color: black;
+    border-bottom: solid 1px rgb(64, 125, 205);
 }
 
-.loadMore{
+.wrap-search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    text-decoration: underline;
-    color: ccc;
+    margin-left: 15px;
+}
+
+.search-button {
+    position: relative;    
+    width: 20px;
+    height: 20px;    
+    box-sizing: border-box;
+    background-color: white;    
+    border: 3px solid slategray;
+    border-radius: 50%;
+    transition: all 0.1s;
+}
+
+.wrap-search-button:hover .search-button {
+    border-color: rgb(7, 107, 207);
+}
+
+.wrap-search-button:hover .search-button:after {
+    background-color: rgb(7, 107, 207);
+}
+
+.search-button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;    
+    width: 10px;
+    height: 3px;
+    background-color: slategray;    
+    border-radius: 0 1.5px 1.5px 0;    
+    transform-origin: 0 50%;
+    transform: translateX(100%) rotate(45deg);
+}
+
+.wrap-search-button:active .search-button {
+    width: 19px;
+    height: 19px;
+    margin-left: 1px;
+}
+
+.svg-1 {
+    position: absolute;
+    top: 220px;
+    left: -180px;
+}
+
+.wrap-car-info {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.main-info-car {
+    margin-top: 0;
+    font-size: 17px;
+    height: 50px;
+    width: auto;
+    max-width: 150px;
+}
+
+.dop-info-car {
+    font-size: 10px;
+    margin: 0 3px 3px 3px;    
+    color: #4d4e4f;
+    margin-bottom: 14px;
+}
+
+
+.wrap-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    width: 600px;
+}
+
+.wrap-change-button:hover, .wrap-delete-button:hover, .wrap-submit-button:hover, .submit-back:hover, .create-button:hover {
+    cursor: pointer;
+}
+
+.submit-back {
+    width: 150px;
+    height: 50px;
+    border: solid 2px rgb(101, 157, 198);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap-car-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-info, .second-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.info-field {
+    margin: 50px;
+}
+
+.info-field input {
+    border: none;
+    height: 30px;
+    font-size: 18px;
+    border-bottom: solid 1px silver;
+    text-align:center;
+}
+
+.wrap-submit-button {
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    border: solid 2px rgb(101, 157, 198);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap-submit-button {
+    width: 100px;
+    height: 50px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border: none;
+}
+
+.create-button {
+    margin-top: 20px;
+    width: 100px;
+    height: 50px;
+    border: solid 2px rgb(101, 157, 198);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
 }
