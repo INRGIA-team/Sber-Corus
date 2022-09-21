@@ -8,7 +8,9 @@ Linux/MacOS:
     
 Windows:
     
-    RUN setx path "%LOGS_DIRECTORY%;C:\Absolute\Path\For\Logs\Dir\"
+- Зайдите в файл `docker-compose.yaml` 
+- Найдите поле `source` у объекта `webserver`
+- Замените ${LOGS_DIRECTORY} на  /Absolute/Path/For/Logs/Dir/
     
 #### Примечание:
 В пути до директории обязательно должен присутствовать последний слеш. При указании "/Absolute/Path/For/Logs/Dir" контейнер запущен не будет. 
