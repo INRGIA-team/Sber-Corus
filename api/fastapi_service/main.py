@@ -44,7 +44,7 @@ async def get_car(
     return car
 
 
-@app.get("/api/cars", response_model=List[_schemas.Car])
+@app.post("/api/cars", response_model=List[_schemas.Car])
 @logger.catch(exclude=_fastapi.HTTPException)
 async def get_cars_by_fields(
     required_car_fields: _schemas.GetCar,
