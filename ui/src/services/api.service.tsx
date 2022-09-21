@@ -44,7 +44,7 @@ export class Api {
 
     putCar(car: Car): Promise<Car>{
         return this.makeRequest({
-            endpoint: `${serverUrl}/api/car/${car.id}`,
+            endpoint: `${serverUrl}/api/car/`,
             method: 'PUT',
             body: car
         })
