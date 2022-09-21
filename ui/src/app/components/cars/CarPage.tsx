@@ -64,7 +64,7 @@ function CarPage() {
 
   function handleSubmit(){
     if(carToEdit)
-      api.putCar(carToEdit).then(res => {
+      api.postCar(carToEdit).then(res => {
         setCar(res);
         setCarToEdit(res);
         navigate('');
@@ -123,41 +123,7 @@ function CarPage() {
     :
     <div>Loading...</div>
 }
-
-
-      { !editing &&
-        <>
-          {car ?
-            <>
-              <div className="wrap-car-info">
-            <div className="first-info">
-                <div className="info-field">
-                    <input type="text" className="input-text" value={car.car_number} disabled/>
-                </div>
-                <div className="info-field">
-                    <input type="text" className="input-text" value={car.model} disabled/>
-                </div>
-            </div>
-            <div className="second-info">
-                <div className="info-field">
-                    <input type="text" className="input-text" value={car.owner} disabled/>
-                </div>
-                <div className="info-field">
-                    <input type="text" className="input-text" value={car.odometer + "km"} disabled/>
-                </div>
-            </div>
-        </div>
-        <div className="wrap-submit-button">
-            <div className="submit-button">Return</div><input type="Return" value="Submit" disabled style={{display:"none"}}/>
-        </div>
-
-            </>
-              :
-            <div>Loading...</div>
-          }
-        </>
-      }
-      { editing && carToEdit &&
+      { car && carToEdit &&
         <>
             <div className="information">
               <form onSubmit={(ev) => {
@@ -165,30 +131,29 @@ function CarPage() {
                 handleSubmit();
               }} >
                 <div className="wrap-car-info">
-            <div className="first-info">
                 <div className="info-field">
-                    <input name="number" type="text" className="input-text" value={carToEdit.car_number} onChange={(ev) => handleChange(ev, 'car_number')} />
+                    <input name="number" type="text" className="input-text" disabled={!editing} value={carToEdit.car_number} onChange={(ev) => handleChange(ev, 'car_number')} />
                 </div>
                 <div className="info-field">
-                    <input name="model" type="text" className="input-text" value={carToEdit.model} onChange={(ev) => handleChange(ev, 'model')}/>
-                </div>
-            </div>
-            <div className="second-info">
-                <div className="info-field">
-                    <input name="owner" type="text" className="input-text" value={carToEdit.owner} onChange={(ev) => handleChange(ev, 'owner')}/>
+                    <input name="model" type="text" className="input-text" disabled={!editing} value={carToEdit.model} onChange={(ev) => handleChange(ev, 'model')}/>
                 </div>
                 <div className="info-field">
-                    <input name="odometer" type="text" className="input-text" value={carToEdit.odometer} onChange={(ev) => handleChange(ev, 'odometer')}/>
+                    <input name="owner" type="text" className="input-text" disabled={!editing} value={carToEdit.owner} onChange={(ev) => handleChange(ev, 'owner')}/>
                 </div>
-            </div>
-        </div>
-        <label>
-        <div className="wrap-submit-button"><div className="submit-button">Return</div>
-            <input type="submit" value="Submit"  style={{display:"none"}} />
-              </div>
-        </label>
+                <div className="info-field">
+                    <input name="odometer" type="text" className="input-text" disabled={!editing} value={carToEdit.odometer} onChange={(ev) => handleChange(ev, 'odometer')}/>
+                </div>
 
-              </form>
+            </div>
+        <label>
+          <div className="wrap-submit-button">
+            <div className="submit-button" style={{cursor: editing ? 'pointer' : 'not-allowed'}}>Submit</div>
+            <input type="submit" value="Submit" disabled={!editing}  style={{display: "none"}} />
+          </div>
+        </label>
+        
+
+          </form>
             </div>
         </>
       }
