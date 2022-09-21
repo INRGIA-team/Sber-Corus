@@ -43,6 +43,20 @@ async def get_car_by_number(car_number: str, db: "Session"):
     car = db.query(_models.Car).filter(_models.Car.car_number == car_number).first()
     return car
 
+async def get_cars_by_fields(required_car_fields: _schemas.UpdateCar, db: "Session"):
+    query = db.query(_models.Car)
+
+    if not required_car_fields.car_number is None: 
+        query = query.filter(_models.Car.car_number == required_car_fields.car_number)
+    if not required_car_fields.model is None:      
+        query = query.filter(_models.Car.model == required_car_fields.model)
+    if not required_car_fields.owner is None:      
+        query = query.filter(_models.Car.owner == required_car_fields.owner)
+    if not required_car_fields.odometer is None:   
+        query = query.filter(_models.Car.odometer == required_car_fields.odometer)
+
+    return query.all()
+
 async def delete_car(car: _models.Car, db: "Session"):
     db.delete(car)
     db.commit()

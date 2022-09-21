@@ -6,3 +6,35 @@
 2022-09-21T11:41:31.427444+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
 2022-09-21T11:41:31.443525+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
 2022-09-21T11:41:31.443525+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:04.709562+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:04.709562+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:04.725307+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:04.725307+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:07.114980+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:39:07.114980+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:39:07.366660+0000: INFO|	 GET /api/car/3/ 200 OK
+2022-09-21T13:39:07.366660+0000: INFO|	 GET /api/car/3/ 200 OK
+2022-09-21T13:39:07.393491+0000: INFO|	 GET /api/car/3/ 200 OK
+2022-09-21T13:39:07.393491+0000: INFO|	 GET /api/car/3/ 200 OK
+2022-09-21T13:39:11.943093+0000: INFO|	 UPDATE /api/car/{ id : 3, car_number : 13123, model : 123123, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:39:11.943093+0000: INFO|	 UPDATE /api/car/{ id : 3, car_number : 13123, model : 123123, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:39:13.278806+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:13.278806+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:13.294994+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:39:13.294994+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:24.990213+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:24.990213+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:25.008162+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:25.008162+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:27.594551+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:51:27.594551+0000: INFO|	 POST /api/car/ { car_number : , model : , owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:51:27.649994+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T13:51:27.649994+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T13:51:27.701724+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T13:51:27.701724+0000: INFO|	 GET /api/car/4/ 200 OK
+2022-09-21T13:51:31.401115+0000: INFO|	 UPDATE /api/car/{ id : 4, car_number : 124, model : 4214, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:51:31.401115+0000: INFO|	 UPDATE /api/car/{ id : 4, car_number : 124, model : 4214, owner : 0, odometer : 0.0, picture : None } 200 OK
+2022-09-21T13:51:32.343714+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:32.343714+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:32.355650+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK
+2022-09-21T13:51:32.355650+0000: INFO|	 GET /api/car/?page=0&per_page=10/ 200 OK

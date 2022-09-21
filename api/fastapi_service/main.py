@@ -44,6 +44,28 @@ async def get_car(
     return car
 
 
+@app.get("/api/cars", response_model=List[_schemas.Car])
+@logger.catch(exclude=_fastapi.HTTPException)
+async def get_cars_by_fields(
+    required_car_fields: _schemas.GetCar,
+    db:_orm.Session = _fastapi.Depends(_services.get_db)
+):
+    request = f"GET /api/car/ {required_car_fields.to_str()}"
+    status_code = 200
+    detail = "OK"
+
+    cars = await _services.get_cars_by_fields(required_car_fields=required_car_fields, db=db)
+    if cars is None:
+        status_code = 404
+        detail = "NOT FOUND"
+        logger.error(f"{request} {status_code} {detail}")
+        raise _fastapi.HTTPException(status_code=status_code, detail=detail)
+    
+    logger.info(f"{request} {status_code} {detail}")
+    return cars
+
+
+
 @app.get("/api/car/", response_model=List[_schemas.Car])
 @logger.catch(exclude=_fastapi.HTTPException)
 async def get_cars(
@@ -73,7 +95,7 @@ async def create_car(
     car_data: _schemas.CreateCar, 
     db: _orm.Session = _fastapi.Depends(_services.get_db),
 ):
-    request = f"POST /api/car/ " + car_data.to_str()
+    request = f"POST /api/car/ {car_data.to_str()}"
     status_code = 200
     detail = "OK"
 
