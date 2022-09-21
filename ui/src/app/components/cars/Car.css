@@ -29,10 +29,11 @@
 }
 
 .search {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -138,10 +139,11 @@
 
 .wrap-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-top: 60px;
-    width: 600px;
+    width: 100%;
+
 }
 
 .wrap-change-button:hover, .wrap-delete-button:hover, .wrap-submit-button:hover, .submit-back:hover, .create-button:hover {
@@ -161,16 +163,12 @@
 .wrap-car-info {
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.first-info, .second-info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 .info-field {
     margin: 50px;
@@ -216,4 +214,8 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+}
+
+.loadMore{
+    cursor: pointer;
 }
