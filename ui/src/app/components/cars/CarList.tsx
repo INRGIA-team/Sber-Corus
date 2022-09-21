@@ -78,10 +78,12 @@ function CarList() {
 
     
     function handleScroll() {
+        console.log(window.innerHeight + document.documentElement.scrollTop, document.documentElement.offsetHeight)
         if (window.innerHeight + document.documentElement.scrollTop < document.documentElement.offsetHeight) return;
         if(!scrolled)
             setIsFetching(true);
     }
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
