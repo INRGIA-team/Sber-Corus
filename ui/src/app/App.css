@@ -14,6 +14,23 @@ input {
   outline: 0;
 }
 
+.svg-1 {
+  position: absolute;
+  top: 220px;
+  left: -180px;
+  z-index: 0;
+}
+
+.svg-2 {
+  position: absolute;
+  top: 400px;
+  left: 90%;
+  z-index: 0;
+}
+
+/*-------------------*/
+
+
 .logo {
   display: flex;
   flex-wrap: wrap;
@@ -48,6 +65,11 @@ input {
   color: #4d4e4f;
 }
 
+
+/*------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+
+
 .cars-wrap {
   display: flex;
   flex-direction: column;
@@ -78,28 +100,70 @@ input {
   cursor: pointer;
 }
 
+.wrap-car-info {
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.main-info-car {
+  margin-top: 0;
+  font-size: 17px;
+  width: auto;
+  max-width: 150px;
+}
+
+.dop-info-car {
+  font-size: 10px;
+  margin: 0 3px 3px 3px;    
+  color: #4d4e4f;
+  margin-bottom: 17px;
+}
+
+
+/*------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
+
+
 .search {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
+  flex-direction: row;
+  margin-top: 40px;
   justify-content: space-between;
   align-items: center;
-  width: 600px;
+}
+
+.create-button {
+  width: 100px;
+  height: 50px;
+  border: 1px solid #d6dde5;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 16px;
+}
+
+.create-button:hover {
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0px 0px 3px 3px #e0e7f3;
 }
 
 .search-field {
   display: flex;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: center;  
 }
 
 .input-text {
   border: none;
   border-bottom: solid 1px silver;
   height: 30px;
-  padding-left: 10px;
-  padding-right: 10px;    
   font-size: 18px;
   color: grey;
   width: 300px;
@@ -115,8 +179,11 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   margin-left: 15px;
+}
+
+.wrap-search-button:hover {
+  cursor: pointer;
 }
 
 .search-button {
@@ -157,59 +224,59 @@ input {
   margin-left: 1px;
 }
 
-.svg-1 {
-  position: absolute;
-  top: 220px;
-  left: -180px;
+.search-result-wrap {
+  margin-bottom: 30px;
+  border-bottom: solid 1px silver;
 }
 
-.wrap-car-info {
-  margin-top: -20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
-.main-info-car {
-  margin-top: 0;
-  font-size: 17px;
-  height: 50px;
-  width: auto;
-  max-width: 150px;
-}
-
-.dop-info-car {
-  font-size: 10px;
-  margin: 0 3px 3px 3px;    
-  color: #4d4e4f;
-  margin-bottom: 14px;
-}
+/*------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------*/
 
 
 .wrap-buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 100px;
   width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.2s;
 }
 
-.wrap-change-button:hover, .wrap-delete-button:hover, .wrap-submit-button:hover, .submit-back:hover, .create-button:hover {
+.submit-button:hover, .submit-back:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 3px 3px #e0e7f3;
+}
+
+.wrap-change-button, .wrap-delete-button {
+  padding: 10px;
+  border: 1px solid #d6dde5;
+  border-radius: 50%;
+}
+
+.wrap-change-button:hover, .wrap-delete-button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 3px 3px #e0e7f3;
+  background-color: #cad6e4;
 }
 
 .submit-back {
-  width: 150px;
+  width: 100px;
   height: 50px;
-  border: solid 2px rgb(101, 157, 198);
+  border: 1px solid #d6dde5;
   border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
 }
 
-.wrap-car-info {
+/*------------------------------------------------------------------------------*/
+
+.wrap-page-car-info {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -221,11 +288,26 @@ input {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 
+.error-handler {
+  position: absolute;
+  text-align: center;
+  width: 302px;
+  font-size: 14px;
+}
+/*
+.information{
+  width: 70%;
+  margin: auto;
+  min-width: 300px;
+}*/
+
 .info-field {
-  margin: 50px;
-  
+  margin: 40px;
 }
 
 .info-field input {
@@ -233,39 +315,28 @@ input {
   height: 30px;
   font-size: 18px;
   border-bottom: solid 1px silver;
-  text-align:center;
+  text-align: center;
+  margin: 0;
 }
 
 .wrap-submit-button {
   margin-top: 20px;
-  width: 100px;
-  height: 50px;
-  border: solid 2px rgb(101, 157, 198);
-  border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.wrap-submit-button {
+.submit-button {
   width: 100px;
   height: 50px;
-  border-radius: 7px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
   border: none;
-}
-
-.create-button {
-  margin-top: 20px;
-  width: 100px;
-  height: 50px;
-  border: solid 2px rgb(101, 157, 198);
+  border: 1px solid #d6dde5;
   border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+}
+
+.loadMore{
+  cursor: pointer;
 }

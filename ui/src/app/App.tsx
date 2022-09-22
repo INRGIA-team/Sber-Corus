@@ -33,6 +33,33 @@ function App() {
                 <Route path="/car/new" element={<Creation></Creation>}></Route>
                 <Route path="/car/:id" element={<CarPage></CarPage>}></Route>
               </Routes>
+
+              <div className="svg-1">
+            <svg height="300" width="500">
+                <defs>
+                    <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#7532a8"/>
+                        <stop offset="100%" stop-color="#a83297"/>
+                      </linearGradient>
+                </defs>
+                <path d="M19,28 C115,13 213,70 500,200" stroke="white" stroke-width="0" fill="url(#Gradient2)" />
+                <path d="M20,27 C27,109 164,110 500,200" stroke="white" stroke-width="0" fill="url(#Gradient2)" />
+            </svg> 
+         </div>
+
+         <div className="svg-2">
+         <svg height="300" width="500"> 
+            <defs> 
+            <linearGradient id="Gradient2" x1="0" x2="1" y1="0" y2="0"> 
+            <stop offset="0%" stop-color="#a83297"/> 
+            <stop offset="100%" stop-color="#8888ff"/> 
+            </linearGradient> 
+            </defs> 
+            <path d="M2,164 C171,196 385,121 428,60 "  stroke-width="0" fill="url(#Gradient2)" /> 
+            <path d="M3,165 C163,47 409,16 428,60 "  stroke-width="0" fill="url(#Gradient2)"  /> 
+            </svg> 
+         </div>
+
           </Router>
 
         </>

@@ -12,6 +12,18 @@ function CarPage(props: {creating?: boolean}) {
   const [carToEdit, setCarToEdit] = useState<Car>();
   const [editing, setEditing] = useState<boolean>(false)
 
+  const [numberDirty, setNumberDirty] = useState<boolean>(false)
+  const [ownerDirty, setOwnerDirty] = useState<boolean>(false)
+  const [odometerDirty, setOdometerDirty] = useState<boolean>(false)
+  const [modelDirty, setModelDirty] = useState<boolean>(false)
+
+  const [numberError, setNumberError] = useState("Number format: A999AA 99")
+  const [ownerError, setOwnerError] = useState("Owner format (passport): 9999999999")
+  const [odometerError, setOdometerError] = useState("Can't be empty")
+  const [modelError, setModelError] = useState("Can't be empty and consists more than 30 symbols")
+
+  const [formValid, setFormValid] = useState<boolean>(false)
+
   const search = useLocation().search;
 
   useEffect(() => {
@@ -57,16 +69,6 @@ function CarPage(props: {creating?: boolean}) {
     if(id) getCar(id)
   }, [id])
 
-  function handleChange(event: any, field: string){
-    if(carToEdit)
-      setCarToEdit(
-        {
-          ...carToEdit, 
-          [field]: (event.target as HTMLInputElement).value
-        }
-      );
-  }
-
   function onDelete(id: number){
     api.deleteCar(id).then(res => {
       navigate('/');
@@ -74,6 +76,12 @@ function CarPage(props: {creating?: boolean}) {
   }
 
   function onEdit(){
+    setNumberError('')
+    setOwnerError('')
+    setOdometerError('')
+    setModelError('')
+    setFormValid(true)
+
     navigate('?editing=true');
     setEditing(true);
   }
@@ -99,6 +107,83 @@ function CarPage(props: {creating?: boolean}) {
         })
       }
     }  
+  }
+
+  function handleChange(event: any, field: string){
+    if(carToEdit) {
+      setCarToEdit(
+        {
+          ...carToEdit, 
+          [field]: (event.target as HTMLInputElement).value
+        }
+      );
+    }
+  }
+
+  useEffect(() => {
+    if (numberError || ownerError || odometerError || modelError) {
+      setFormValid(false)
+    }
+    else {
+      setFormValid(true)
+    }
+  }, [numberError, ownerError, odometerError, modelError])
+
+  const numberHandler = (e: any, field: string) => {
+    handleChange(e, field)
+    if (!carNumberValid(e.target.value)) {
+      setNumberError('Number format: A999AA 99')
+    } 
+    else { 
+      setNumberError('')
+    }
+  }
+
+  const ownerHandler = (e: any, field: string) => {
+    handleChange(e, field)
+    if (!ownerDataValid(e.target.value)) {
+      setOwnerError('Owner format (passport): 9999999999')
+    } 
+    else {
+      setOwnerError('')
+    }
+  }
+
+  const odometerHandler = (e: any, field: string) => {
+    handleChange(e, field)
+    if (!odometerValid(e.target.value)) {
+      setOdometerError("Can't be empty")
+    } 
+    else {
+      setOdometerError('')
+    }
+  }
+
+  const modelHandler = (e: any, field: string) => {
+    handleChange(e, field)
+    if (!carModelValid(e.target.value)) {
+      setModelError("Can't be empty and consists more than 30 symbols")
+    } 
+    else {
+      setModelError('')
+    }
+  }
+
+  const blurHandler = (e: any) => {
+    switch (e.target.name) {
+      case 'number':
+        setNumberDirty(true)
+        break
+      case 'model':
+        setModelDirty(true)
+        break
+      case 'owner':
+        setOwnerDirty(true)
+        break
+      case 'odometer':
+        setOdometerDirty(true)
+        break
+    }
   }
 
   function onAddPucture(ev: any){
@@ -151,36 +236,47 @@ function CarPage(props: {creating?: boolean}) {
 }
       { car && carToEdit &&
         <>
-            <div className="information">
               <form onSubmit={(ev) => {
                 ev.preventDefault();
                 handleSubmit();
               }} >
-                <div className="wrap-car-info">
+                <div className="wrap-car-info"> 
+                <div className="first-info">
                 <div className="info-field">
-                    <input placeholder='Number' name="number" type="text" className="input-text" disabled={!editing} value={carToEdit.car_number} onChange={(ev) => handleChange(ev, 'car_number')} />
+                    <input value={carToEdit.car_number} onBlur={e => blurHandler(e)} placeholder='Number' name="number" type="text" 
+                    className="input-text" disabled={!editing} onChange={(ev) => numberHandler(ev, 'car_number')}/>
+                    {(numberDirty && numberError) && <div className="error-handler" style={{color:'red'}}>{numberError}</div>}
                 </div>
+                
                 <div className="info-field">
-                    <input placeholder='Model' name="model" type="text" className="input-text" disabled={!editing} value={carToEdit.model} onChange={(ev) => handleChange(ev, 'model')}/>
+                    <input value={carToEdit.model} onBlur={e => blurHandler(e)} placeholder='Model' name="model" type="text" 
+                    className="input-text" disabled={!editing} onChange={(ev) => modelHandler(ev, 'model')}/>
+                    {(modelDirty && modelError) && <div className="error-handler" style={{color:'red'}}>{modelError}</div>}
                 </div>
+                </div>
+                <div className="second-info">
                 <div className="info-field">
-                    <input placeholder='Owner' name="owner" type="text" className="input-text" disabled={!editing} value={carToEdit.owner} onChange={(ev) => handleChange(ev, 'owner')}/>
+                    <input value={carToEdit.owner} onBlur={e => blurHandler(e)} placeholder='Owner' name="owner" type="text" 
+                    className="input-text" disabled={!editing} onChange={(ev) => ownerHandler(ev, 'owner')}/>
+                    {(ownerDirty && ownerError) && <div className="error-handler" style={{color:'red'}}>{ownerError}</div>}
                 </div>
+                
                 <div className="info-field">
-                    <input placeholder='Odometr' name="odometer" type="text" className="input-text" disabled={!editing} value={carToEdit.odometer} onChange={(ev) => handleChange(ev, 'odometer')}/>
+                    <input value={carToEdit.odometer} onBlur={e => blurHandler(e)} placeholder='Odometr' name="odometer" type="text" 
+                    className="input-text" disabled={!editing} onChange={(ev) => odometerHandler(ev, 'odometer')}/>
+                    {(odometerDirty && odometerError) && <div className="error-handler" style={{color:'red'}}>{odometerError}</div>}
                 </div>
-
-            </div>
+              </div>
+              </div>
         <label>
           <div className="wrap-submit-button">
             {/* <div className="submit-button" style={{cursor: editing ? 'pointer' : 'not-allowed'}}>Submit</div> */}
-            <input className="create-button"  type="submit" value="Submit" disabled={!editing}  />
+            <input className="create-button"  type="submit" value="Submit" disabled={!formValid}/>
           </div>
         </label>
         
 
           </form>
-            </div>
         </>
       }
     </>
@@ -188,3 +284,42 @@ function CarPage(props: {creating?: boolean}) {
 }
 
 export default CarPage;
+
+
+const ownerDataRE = new RegExp('^[0-9]{10}');
+const odometerRE = new RegExp(`^[0-9]+[.]?[0-9]+$`);
+
+const symbols = '[АВЕКМНОРСТУХавекмнорстухABEKMHOPCTYXabtkmnopctyx]'; 
+const carNumberRE:RegExp[] = [new RegExp(`^${symbols}{1}[0-9]{3}${symbols}{2} [0-9]{2,3}$`), 
+                              new RegExp(`^${symbols}{2}[0-9]{3} [0-9]{2,3}$`),
+                              new RegExp(`^${symbols}{2}[0-9]{4} [0-9]{2,3}$`),
+                              new RegExp(`^[0-9]{4}${symbols}{2} [0-9]{2,3}$`),
+                              new RegExp(`^${symbols}{1}[0-9]{4} [0-9]{2,3}$`),
+                              new RegExp(`^[0-9]{4}${symbols}{1} [0-9]{2,3}$`)];
+
+
+function carNumberValid(str: string = "") {
+    for (let i = 0; i <= 5; ++i) {
+        if (carNumberRE[i].test(str)) { return true;}
+    }
+    return false
+}
+
+
+function carModelValid(str: string = "") {
+    if (str.length > 0 && str.length < 30) { return true; }
+    return false;
+}
+
+
+function ownerDataValid(str: string = "") {
+    if (ownerDataRE.test(str)) { return true; }
+    return false;
+}
+
+
+function odometerValid(str: string = "") {
+    if (odometerRE.test(str)) { return true; }
+    return false;
+
+}

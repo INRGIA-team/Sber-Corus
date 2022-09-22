@@ -88,7 +88,7 @@ function CarList() {
             
             </div>
             { !!carDataSource.length &&
-            <div className='cars-wrap'>
+            <div className='cars-wrap search-result-wrap'>
                 {carDataSource.map(car => 
                 <Link to={'/car/' + car.id} className='carCard' key={'car-' + car.car_number} style={{textDecoration: 'none', color: 'black'}}>                
                     <div className='car'>                            
